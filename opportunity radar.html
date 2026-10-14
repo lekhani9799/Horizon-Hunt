@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10152c">
+  <meta name="description" content="Horizon Hunt helps students discover and organize opportunities.">
+  <title>Horizon Hunt — Discover What's Next</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Horizon Hunt home">
+        <span class="brand-mark">✳</span>
+        <span>Horizon<span class="brand-light">Hunt</span></span>
+      </a>
+
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="discover" type="button">
+          <span class="nav-icon">⌕</span> Discover
+        </button>
+        <button class="nav-link" data-view="saved" type="button">
+          <span class="nav-icon">♡</span> Saved
+          <span class="nav-count" id="savedNavCount">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-label filter-heading">REFINE RESULTS</div>
+
+      <div class="filter-block">
+        <label class="filter-label" for="categoryFilter">Category</label>
+        <select id="categoryFilter">
+          <option value="all">All categories</option>
+          <option value="hackathon">Hackathons</option>
+          <option value="competition">Competitions</option>
+          <option value="research">Research</option>
+          <option value="scholarship">Scholarships</option>
+          <option value="workshop">Workshops</option>
+        </select>
+      </div>
+
+      <div class="filter-block">
+        <label class="filter-label" for="deadlineFilter">Deadline</label>
+        <select id="deadlineFilter">
+          <option value="all">Any deadline</option>
+          <option value="7">Within 7 days</option>
+          <option value="30">Within 30 days</option>
+          <option value="upcoming">More than 30 days</option>
+          <option value="no-date">No deadline listed</option>
+        </select>
+      </div>
+
+      <button class="clear-filters" id="clearFilters" type="button">
+        ↺ Clear all filters
+      </button>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note-icon">✦</div>
+        <p class="sidebar-note-title">Your next big thing starts here.</p>
+        <p class="sidebar-note-copy">Discover opportunities. Build your future.</p>
+        <span class="demo-pill">MVP DEMO</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" type="button"
+          aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbPage">Discover</strong></div>
+        <div class="topbar-right">
+          <span class="demo-status"><span></span> Demo environment</span>
+          <div class="avatar" aria-label="Student profile">OR</div>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <section class="hero">
+          <div class="hero-content">
+            <div class="eyebrow"><span class="sparkle">✦</span> YOUR FUTURE, DISCOVERED</div>
+            <h1>Big opportunities.<br><span>One place.</span></h1>
+            <p class="hero-description">
+              Find competitions, research experiences, scholarships and more.
+              Spend less time searching and more time building.
+            </p>
+            <form class="search-form" id="searchForm" role="search">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <label class="visually-hidden" for="searchInput">Search opportunities</label>
+              <input id="searchInput" type="search"
+                placeholder="Search opportunities, skills, or keywords..."
+                autocomplete="off">
+              <button type="submit">Search <span>→</span></button>
+            </form>
+            <div class="hero-footnote"><span>✦</span> A discovery dashboard built for ambitious students</div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit-core">✳</div>
+            <div class="float-card float-card-one"><span>↗</span> New possibilities</div>
+            <div class="float-card float-card-two"><span>✦</span> Your next chapter</div>
+            <div class="hero-star star-one">✦</div>
+            <div class="hero-star star-two">✧</div>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Opportunity overview">
+          <article class="stat-card">
+            <div class="stat-icon purple-icon">✳</div>
+            <div><p>Total opportunities</p><strong id="totalStat">0</strong><span>In this demo catalogue</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon orange-icon">◷</div>
+            <div><p>Closing soon</p><strong id="closingStat">0</strong><span>Within the next 7 days</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon green-icon">♡</div>
+            <div><p>Saved by you</p><strong id="savedStat">0</strong><span>Stored in this browser</span></div>
+          </article>
+        </section>
+
+        <section class="catalogue-section" aria-labelledby="sectionTitle">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">THE OPPORTUNITY BOARD</div>
+              <h2 id="sectionTitle">Explore opportunities</h2>
+              <p id="sectionSubtitle">Find a challenge worth taking on.</p>
+            </div>
+            <div class="sort-control">
+              <label for="sortFilter">Sort by</label>
+              <select id="sortFilter">
+                <option value="deadline">Deadline: soonest</option>
+                <option value="newest">Recently added</option>
+                <option value="name">Name: A–Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="quick-filters" role="group" aria-label="Quick category filters">
+            <button class="chip active" data-category="all" type="button">All opportunities</button>
+            <button class="chip" data-category="hackathon" type="button">⌘ Hackathons</button>
+            <button class="chip" data-category="competition" type="button">⚡ Competitions</button>
+            <button class="chip" data-category="research" type="button">⌕ Research</button>
+            <button class="chip" data-category="scholarship" type="button">✧ Scholarships</button>
+            <button class="chip" data-category="workshop" type="button">✎ Workshops</button>
+          </div>
+
+          <div class="results-toolbar">
+            <p id="resultsCount" aria-live="polite">Loading opportunities...</p>
+            <span class="demo-reminder">Example data · Not live listings</span>
+          </div>
+
+          <div class="opportunity-grid" id="opportunityGrid" aria-live="polite"></div>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <div class="empty-icon">⌕</div>
+            <h3 id="emptyTitle">No matching opportunities</h3>
+            <p id="emptyMessage">Try changing your search or filters.</p>
+            <button class="primary-button" id="emptyReset" type="button">Reset filters</button>
+          </div>
+
+          <div class="bottom-note">
+            <span>ⓘ</span>
+            <p><strong>Demo notice:</strong> Listings, dates and application links are fictional placeholders.
+              Verify real opportunities and their official deadlines before applying.</p>
+          </div>
+        </section>
+
+        <footer class="page-footer">
+          <span>✳ Horizon Hunt</span>
+          <span>Student-built discovery MVP · Demo version</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="opportunityModal" hidden>
+    <section class="modal-panel" role="dialog" aria-modal="true"
+      aria-labelledby="modalTitle" aria-describedby="modalDescription" tabindex="-1">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close details">×</button>
+      <div class="modal-top-art"><span>✳</span><span class="modal-demo-label">DEMO LISTING</span></div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span id="modalCategory" class="category-badge">Category</span>
+          <span id="modalUrgency" class="urgency-badge">Deadline</span>
+        </div>
+        <h2 id="modalTitle">Opportunity title</h2>
+        <p class="modal-provider" id="modalProvider">Fictional demo listing</p>
+        <p id="modalDescription" class="modal-description"></p>
+
+        <div class="detail-grid">
+          <div class="detail-item"><span>◷ Deadline</span><strong id="modalDeadline">Not specified</strong></div>
+          <div class="detail-item"><span>♙ Eligibility</span><strong id="modalEligibility">See details</strong></div>
+        </div>
+
+        <div class="modal-section">
+          <h3>About this opportunity</h3>
+          <p id="modalAbout"></p>
+        </div>
+        <div class="modal-demo-warning">
+          <strong>⚠ Fictional example</strong>
+          <p>This listing and its application address are placeholders for demonstrating the MVP. They are not verified opportunities.</p>
+        </div>
+        <div class="modal-actions">
+          <button class="primary-button" id="modalSave" type="button">♡ Save opportunity</button>
+          <a class="apply-button" id="modalApply" href="#"
+            aria-label="Demo application link; not a real application">Demo link only ↗</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
